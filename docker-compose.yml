@@ -1,0 +1,59 @@
+version: '3.7'
+
+services:
+  server:
+    image: lucagiorgetti/server2
+    container_name: server2
+    command: npm start
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/test
+    networks:
+      - app-network
+  mongo:
+    image: mongo
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  mongo-seed:
+    image: stefanwalther/mongo-seed
+    container_name: mongo-seed
+    environment:
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+    volumes:
+      - ./mongo-seed:/data
+    depends_on:
+      - mongo
+    command: [
+      "mongorestore --host mongo --port 27017 --db test data/bac/test"
+    ]
+    networks:
+      - app-network
+  client:
+    image: lucagiorgetti/client
+    container_name: client
+    command: npm start
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    networks:
+      - app-network
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
