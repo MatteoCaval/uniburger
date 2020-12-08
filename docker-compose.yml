@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   server:
-    image: lucagiorgetti/server2
-    container_name: server2
+    image: matteocaval/server
+    container_name: server
     command: npm start
     ports:
       - "3001:3001"
@@ -38,7 +38,7 @@ services:
     networks:
       - app-network
   client:
-    image: lucagiorgetti/client
+    image: matteocaval/client
     container_name: client
     command: npm start
     depends_on:
