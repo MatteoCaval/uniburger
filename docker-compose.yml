@@ -11,7 +11,7 @@ services:
       - mongo
     environment:
       - NODE_ENV=development
-      - MONGO_URI=mongodb://mongo:27017/test
+      - MONGO_URI=mongodb://mongo:27017/uniburger
     networks:
       - app-network
   mongo:
@@ -33,7 +33,7 @@ services:
     depends_on:
       - mongo
     command: [
-      "mongorestore --host mongo --port 27017 --drop --db test data/dump/uniburger"
+      "mongorestore --host mongo --port 27017 --drop --db uniburger data/dump/uniburger"
     ]
     networks:
       - app-network
