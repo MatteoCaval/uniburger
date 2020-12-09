@@ -33,7 +33,7 @@ services:
     depends_on:
       - mongo
     command: [
-      "mongorestore --host mongo --port 27017 --db test data/dump/uniburger"
+      "mongorestore --host mongo --port 27017 --drop --db test data/dump/uniburger"
     ]
     networks:
       - app-network
