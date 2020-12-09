@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"uniburger.Users"}],"uuid":"b9b6f1508f5d441c98435d127d632023"}

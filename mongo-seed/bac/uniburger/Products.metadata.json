@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"uniburger.Products"}],"uuid":"8a2da8c9cb5945a5967141ca525bd555"}
