@@ -43,6 +43,8 @@ services:
     command: npm start
     depends_on:
       - server
+    environment: 
+      - API_BASE_URL=http://server:3001
     ports:
       - "3000:3000"
     stdin_open: true
