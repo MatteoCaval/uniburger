@@ -32,19 +32,17 @@ services:
       - ./mongo-seed:/data
     depends_on:
       - mongo
-    command: [
-      "mongorestore --host mongo --port 27017 --drop --db uniburger data/dump/uniburger"
-    ]
+    command: mongorestore --host mongo --port 27017 --drop --db uniburger data/dump/uniburger
     networks:
       - app-network
   client:
     image: matteocaval/client
     container_name: client
+    environment: 
+      - REACT_APP_API_BASE_URL=http://server:3001
     command: npm start
     depends_on:
       - server
-    environment: 
-      - API_BASE_URL=server:3001
     ports:
       - "3000:3000"
     stdin_open: true
